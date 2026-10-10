@@ -15,50 +15,58 @@ Tablero para seguir mis postulaciones laborales, con una función de IA que lee 
 ## 2. Funcionalidades
 
 **Versión 1 (mínima)**
+
 - [ ] Registro / login
 - [ ] Crear, editar y borrar postulaciones (empresa, puesto, fecha, link, estado, notas)
 - [ ] Tablero Kanban con estados: Postulado, Entrevista, Prueba técnica, Oferta, Rechazado
 - [ ] Filtros y búsqueda
 
 **Versión 2**
+
 - [ ] Pegar el texto de una oferta y que la IA extraiga empresa, puesto, stack y requisitos
 - [ ] Métricas: total de postulaciones, tasa de respuesta
 - [ ] Drag & drop entre columnas
 
 **Ideas para después**
+
 - [ ] Recordatorios por email
 - [ ] Exportar a CSV
 - [ ] Historial de cambios de estado
 
 ## 3. Stack
 
-| Capa | Tecnología |
-|---|---|
-| Frontend | Next.js, React, TypeScript, Tailwind CSS, Shadcn UI |
-| Diseño inicial | V0 (solo para la UI) |
-| Backend | NestJS, TypeScript |
-| Base de datos | PostgreSQL (Supabase) + Prisma ORM |
-| IA | API de Claude + validación con Zod |
-| Tests | Jest (backend), Playwright (e2e) |
-| DevOps | Docker, docker compose, GitHub Actions |
-| Deploy | Vercel (front), Render (back) |
+| Capa           | Tecnología                                          |
+| -------------- | --------------------------------------------------- |
+| Frontend       | Next.js, React, TypeScript, Tailwind CSS, Shadcn UI |
+| Diseño inicial | V0 (solo para la UI)                                |
+| Backend        | NestJS, TypeScript                                  |
+| Base de datos  | PostgreSQL (Supabase) + Prisma ORM                  |
+| IA             | API de Claude + validación con Zod                  |
+| Tests          | Jest (backend), Playwright (e2e)                    |
+| DevOps         | Docker, docker compose, GitHub Actions              |
+| Deploy         | Vercel (front), Render (back)                       |
 
 ## 4. Plan de trabajo (en orden)
 
 Regla: no paso a la fase siguiente hasta poder explicar con mis palabras qué hice en la anterior.
 
 ### Fase 0 · Preparación
-- [ ] Crear los repos `applyr-frontend` y `applyr-backend` en GitHub
-- [ ] Crear el tablero de GitHub Projects con estas fases
-- [ ] Crear cuentas / claves: Supabase, Vercel, Render, API de Claude
+
+- [x] Crear los repos `applyr-frontend` y `applyr-backend` en GitHub
+- [x] Crear un tablero de GitHub Projects por repo (Roadmap Applyr Frontend / Backend)
+- [x] Cuentas: Supabase (proyecto `applyr` creado, región São Paulo), Vercel y Render (ya tengo cuenta)
+- [ ] Clave de la API de Claude (se crea en la Fase 5)
 - [x] Definir el nombre definitivo: **Applyr** (`applyr.vercel.app` ya está ocupado, usar otra URL en Vercel, ej. `applyr-app.vercel.app`)
 
 ### Fase 1 · Diseño
-- [ ] Generar el diseño en V0 con el prompt (ver sección 6)
-- [ ] Revisar el código que genera y ordenarlo
+
+- [x] Generar el diseño en V0 con el prompt (ver sección 6)
+- [x] Exportar el código al repo `applyr-frontend` y correrlo en local
+- [ ] Recorrer el código que genera V0 y entender cada componente
 - [ ] Opcional: ajustar en Figma
 
 ### Fase 2 · Backend base
+
 - [ ] Iniciar proyecto NestJS
 - [ ] Conectar Prisma + PostgreSQL
 - [ ] Modelo de datos: `User`, `Application`
@@ -67,34 +75,49 @@ Regla: no paso a la fase siguiente hasta poder explicar con mis palabras qué hi
 - [ ] Tests con Jest del módulo de postulaciones
 
 ### Fase 3 · Autenticación
+
 - [ ] Registro y login con JWT en cookies httpOnly
 - [ ] Cada usuario ve solo sus postulaciones
 
 ### Fase 4 · Frontend conectado
+
 - [ ] Pasar el diseño a Next.js
 - [ ] Conectar con la API
 - [ ] Tablero, filtros y búsqueda
 - [ ] Manejo de errores y estados de carga
 
 ### Fase 5 · IA
+
 - [ ] Endpoint que recibe el texto de una oferta
 - [ ] Llamada a la API de Claude pidiendo una respuesta estructurada
 - [ ] Validar la respuesta con Zod antes de guardar
 - [ ] Modal "Pegar oferta" en el front
 
 ### Fase 6 · Métricas
+
 - [ ] Endpoint de estadísticas
 - [ ] Cabecera con totales y tasa de respuesta
 
 ### Fase 7 · Calidad
+
 - [ ] Test e2e con Playwright del flujo principal (login → crear postulación → mover de estado)
 
 ### Fase 8 · Docker y CI
+
 - [ ] Dockerfile para front y back
 - [ ] `docker compose` para levantar todo local
 - [ ] GitHub Actions: correr tests en cada push
 
-### Fase 9 · Deploy y documentación
+### Fase 9 · Idiomas (EN / ES)
+
+- [ ] Archivos de textos `en.json` y `es.json`
+- [ ] Context de React que guarda el idioma elegido
+- [ ] Botón EN/ES en la cabecera
+- [ ] Fechas y números adaptados al idioma con `toLocaleDateString`
+- [ ] Hacerlo al final de las funcionalidades, para no traducir los textos dos veces
+
+### Fase 10 · Deploy y documentación
+
 - [ ] Deploy en Vercel y Render
 - [ ] README final **en inglés**, con capturas, link a la demo y decisiones técnicas
 - [ ] Agregar el proyecto al CV y al portfolio
@@ -136,6 +159,8 @@ with Tailwind and Shadcn UI. Responsive, light and dark mode.
 - **Swagger:** documentación interactiva de la API.
 - **Kanban:** tablero con columnas por estado; las tarjetas se mueven de una a otra.
 - **V0:** herramienta de IA de Vercel que genera interfaces con React y Tailwind.
+- **i18n (internacionalización):** preparar la app para que se pueda usar en varios idiomas, con los textos guardados aparte del código.
+- **Tarjeta:** una postulación concreta (empresa + puesto). Se mueve entre columnas a medida que avanza el proceso.
 
 ## 8. Notas
 
